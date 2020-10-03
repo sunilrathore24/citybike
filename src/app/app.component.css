@@ -1,0 +1,44 @@
+agm-map {
+  height: 520px;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.toggle-button {
+  position: fixed;
+  top: 70px;
+  z-index: 1;
+  margin: 0.5rem;
+}
+
+.title {
+  margin: 0.5rem;
+}
+
+.icon {
+  width: 30px;
+  margin: 0.5rem;
+}
+
+.icon-heading {
+  width: 50px;
+  margin: 0.5rem;
+}
+
+.heading-align {
+  display: flex;
+  align-items: center;
+}
+.center-align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bold {
+  font-weight: bold;
+  font-size: medium;
+}
+

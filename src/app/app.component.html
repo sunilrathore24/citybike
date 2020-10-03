@@ -1,0 +1,39 @@
+<div class="heading-align">
+  <img class="icon-heading" src="assets/bicycle.svg">
+  <h1 class="title">{{ title }}</h1>
+</div>
+<mat-button-toggle-group class="toggle-button bold" name="fontStyle" aria-label="Font Style">
+  <mat-button-toggle [checked]="true" (click)="isBikeSelected = true" class="background" value="bold">Bike
+  </mat-button-toggle>
+  <mat-button-toggle class="background" (click)="isBikeSelected = false" value="italic">Parking</mat-button-toggle>
+</mat-button-toggle-group>
+
+<agm-map [latitude]="lat" [longitude]="lon" [zoom]="13">
+  <agm-marker [class]="'cursor'" *ngFor="let station of bikeStations" [iconUrl]="
+  isBikeSelected ? (station.bikeAvaialble === 0 ? station.imageUrlGrey : station.imageUrlBlue )
+  : (station.parkingAvailable === 0 ? station.imageUrlGrey : station.imageUrlBlue )"
+    [label]="{fontSize: '10px', text: isBikeSelected? station.bikeAvaialble.toString(): station.parkingAvailable.toString() }"
+    [latitude]="station?.lat" [longitude]="station?.lon" (mouseOver)="onMouseOver(infoWindow, $event)"
+    (mouseOut)="onMouseOut(infoWindow, $event)">
+
+    <agm-info-window [disableAutoPan]="false" #infoWindow>
+      <div class="center-align">
+        <h2> {{station.name}} </h2>
+      </div>
+      <hr />
+      <div class="center-align bold">
+        <img class="icon" src="assets/bicycle.svg">
+        <span *ngIf="station.bikeAvaialble > 1">{{station.bikeAvaialble}} bikes available</span>
+        <span *ngIf="station.bikeAvaialble <= 1">{{station.bikeAvaialble}} bike available</span>
+      </div>
+      <div class="center-align bold">
+        <img class="icon" src="assets/parking.svg">
+        <span *ngIf="station.parkingAvailable > 1">{{station.parkingAvailable}} docks available</span>
+        <span *ngIf="station.parkingAvailable <= 1">{{station.parkingAvailable}} dock available</span>
+      </div>
+    </agm-info-window>
+
+
+  </agm-marker>
+  <!-- </ng-container> -->
+</agm-map>
